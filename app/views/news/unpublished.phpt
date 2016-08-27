@@ -14,7 +14,7 @@
         <?php foreach($unpublished as $post) {?>
           <tr>
             <td><?php echo $post->getTitle();?></td>
-            <td><a class="normal-button">Publish</a></td>
+            <td><a href="/thegong/news/edit/<?php echo $post->getId();?>" class="normal-button">Edit</a></td>
             <td><a class="alternate-button">View</a></td>
             <td><a class="danger-button">Delete</a></td>
           </tr>

@@ -132,7 +132,7 @@ class AuthController extends Controller
 
     /**
      * Shows the password update page to the user 
-     * It also process form validation messages and shows appropriate messages 
+     * It also processes form validation messages and shows appropriate messages 
      * to the user
      * 
      * @return void
