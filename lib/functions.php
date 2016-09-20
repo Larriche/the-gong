@@ -1,7 +1,7 @@
 <?php
 function adminLoggedIn()
 {
-    if(isset($_SESSION['user_id'])){
+    if(isset($_SESSION['gong_user_id'])){
         return true;
     }
 

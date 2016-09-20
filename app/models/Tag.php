@@ -27,6 +27,24 @@ class Tag
 		return $this->name;
 	}
 
+	public function getNews()
+	{
+		$dbman = new DBSelectManager();
+        
+        $tagId = $this->id;
+        $news = [];
+
+		$rows = $dbman->select('*')->from('news_articles')->join('tags_to_posts')->on("news_articles.id = tags_to_posts.post_id AND tags_to_posts.tag_id = '$tagId'")->getRows();
+
+		if(count($rows)){
+			foreach($rows as $row){
+				$news[] = News::createFromRow($row);
+			}
+		}
+        
+		return $news;
+	}
+
 	public function save()
 	{
 		if($this->loadedFromTable){

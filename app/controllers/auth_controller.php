@@ -117,7 +117,7 @@ class AuthController extends Controller
 
 				session_regenerate_id();
 			
-				$_SESSION['user_id'] = $user->getId();
+				$_SESSION['gong_user_id'] = $user->getId();
 
 		        session_write_close();
 

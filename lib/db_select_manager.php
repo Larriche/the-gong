@@ -21,9 +21,17 @@ class DBSelectManager
 
     protected $connection;
 
-    protected $command;
+    protected $statement;
 
     protected $operator = "AND";
+
+    protected $join_tables;
+
+    protected $join_conditions;
+
+    protected $join_types;
+
+    protected $curr_join_type;
 
     protected $useManualStatement = false;
 
@@ -57,6 +65,12 @@ class DBSelectManager
     	return $this;
     }
 
+    public function bindValues()
+    {
+        $this->values = func_get_args();
+        return $this;
+    }
+
     public function limit($start,$offset)
     {
     	$this->hasLimit = true;
@@ -86,13 +100,48 @@ class DBSelectManager
         return $this;
     }
 
+    public function join($table)
+    {
+        if(!$this->curr_join_type){
+            $this->joinType('INNER');
+        }
+
+        $this->curr_join_type = null;
+
+        $this->join_tables[] = $table;
+        return $this;
+    }
+
+    public function on($condition)
+    {
+        $this->join_conditions[] = $condition;
+        return $this;
+    }
+
+    public function joinType($type)
+    {
+        $this->join_types[] = $type;
+        return $this;
+    }
+
     public function getRows()
     {
-        if($this->useManualStatement)
-            $query = $this->command;
+        if($this->useManualStatement){
+            $query = $this->statement;
+        }
 
         else{
             $query = "SELECT " . join(" , ",$this->fields)." FROM {$this->table}";
+
+            if(!empty($this->join_tables)){
+                for($i = 0;$i < count($this->join_conditions);$i++){
+                    $table = $this->join_tables[$i];
+                    $condition = $this->join_conditions[$i];
+                    $type = $this->join_types[$i];
+
+                    $query .= " ".$type ." JOIN ".$table." ON ".$condition." ";
+                }
+            }
 
             if(!empty($this->whereFields)){
                 $query .= " WHERE ";
@@ -111,14 +160,13 @@ class DBSelectManager
                 $query .= " LIMIT ".$this->start." , ".$this->offset;
             }
         }
-
+    
+       
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute($this->values);
 
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	    return $rows;
     }
-
-
 }
 ?>

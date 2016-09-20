@@ -20,7 +20,7 @@
           <?php
           $tagObjs = $news->getTags();
           foreach($tagObjs as $tagObj){ ?>
-            <span class="tag"><a href="#"><?php echo $tagObj->getName();?></a></span>
+            <span class="tag"><a href="/thegong/tags/view/<?php echo $tagObj->getId();?>"><?php echo $tagObj->getName();?></a></span>
           <?php } ?>
 
           <section id="comments-container">
