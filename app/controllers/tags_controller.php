@@ -12,7 +12,7 @@ class TagsController extends Controller
     */
 
     /**
-     * Create a new authentication controller instance.
+     * Create a new tag controller instance.
      *
      * @return void
      */
