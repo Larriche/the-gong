@@ -34,11 +34,13 @@ class Tag
         $tagId = $this->id;
         $news = [];
 
-		$rows = $dbman->select('*')->from('news_articles')->join('tags_to_posts')->on("news_articles.id = tags_to_posts.post_id AND tags_to_posts.tag_id = '$tagId'")->getRows();
+		$rows = $dbman->select('post_id')->from('tags_to_posts')->where('tag_id')->match($this->id)->getRows();
 
 		if(count($rows)){
 			foreach($rows as $row){
-				$news[] = News::createFromRow($row);
+				$id = $row['post_id'];
+
+				$news[] = News::find($id);
 			}
 		}
         

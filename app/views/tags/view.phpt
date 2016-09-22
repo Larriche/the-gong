@@ -6,8 +6,8 @@
 
         <?php foreach($news as $new){?>
         	<section>
-        	   <p><?php echo $new->getTitle();?>&nbsp;
-        	     <a href="/thegong/news/view/<?php echo $new->getId();?>" class="btn-primary">Read</a>
+               <p>
+        	   <a class="news-link" href="/thegong/news/view/<?php echo $new->getId();?>"><?php echo $new->getTitle();?></a>
         	   </p>
         	</section>
         <?php } ?>

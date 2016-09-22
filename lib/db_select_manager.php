@@ -161,7 +161,7 @@ class DBSelectManager
             }
         }
     
-       
+    
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute($this->values);
 

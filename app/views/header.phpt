@@ -22,7 +22,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a href="#" class="navbar-brand"><span class="site-logo">The Gong</span></a>
+                <a href="/thegong/" class="navbar-brand"><span class="site-logo">The Gong</span></a>
             </div>
 
             <!-- Menu Items for admins -->

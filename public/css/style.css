@@ -108,3 +108,12 @@ table{
 	color: white;
 	border-radius: 5px;
 }
+
+.news-link{
+	color: teal;
+}
+.news-link:hover{
+	border: 1px solid teal;
+	padding: 5px;
+	color: teal;
+}
