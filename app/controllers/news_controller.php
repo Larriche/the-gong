@@ -156,6 +156,11 @@ class NewsController extends Controller
 		}
 	}
 
+    /**
+     * Handle the form request to edit a news item in the database
+     *
+     * @return void
+     */
 	public function process_edit()
 	{
 	    if(isset($_POST['publish_news']) || isset($_POST['save_news'])){
@@ -214,18 +219,33 @@ class NewsController extends Controller
 		}	    	
 	}
 
+    /**
+     * View all published news articles 
+     *
+     * @return void
+     */
 	public function published()
 	{
 		$published = News::getPublished();
 		$this->makeView('news/published',compact('published'));
 	}
 
+    /**
+     * View all unpublished news articles
+     *
+     * @return void
+     */
 	public function unpublished()
 	{
 		$unpublished = News::getUnpublished();
 		$this->makeView('news/unpublished',compact('unpublished'));
 	}
 
+    /**
+     * Show the form for editing a news articles
+     *
+     * @return void
+     */
 	public function edit()
 	{
 		$params = func_get_args();
@@ -245,6 +265,12 @@ class NewsController extends Controller
 		$this->makeView('news/edit',compact('news' , 'messages' , 'alertType'));
 	}
 
+    /**
+     * Get messages to be shown to user after form submission based on notifications
+     * set
+     *
+     * @return void
+     */
 	public function getFormMessages()
 	{
 	    $successMessages = [];
@@ -296,6 +322,11 @@ class NewsController extends Controller
 		return ['messages'=>$messages , 'alertType'=>$alertType];		
 	}
 
+    /**
+     * Generic method that is called during creation and edit of news articles
+     *
+     * @return void
+     */
 	public function handleForm()
 	{
 		$errors = [];

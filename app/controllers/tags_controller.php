@@ -42,7 +42,6 @@ class TagsController extends Controller
 
 		$tag = Tag::find($id);
 		$news = $tag->getNews();
-		//print_r($news);
 
 		$this->makeView('tags/view',compact('tag','news'));
 	}
