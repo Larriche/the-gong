@@ -20,7 +20,7 @@
           <?php
           $tagObjs = $news->getTags();
           foreach($tagObjs as $tagObj){ ?>
-            <span class="tag"><a href="/thegong/tags/view/<?php echo $tagObj->getId();?>"><?php echo $tagObj->getName();?></a></span>
+            <span class="tag"><a href="http://<?php echo $_SERVER['SERVER_NAME'];?>/tags/view/<?php echo $tagObj->getId();?>"><?php echo $tagObj->getName();?></a></span>
           <?php } ?>
 
           <section id="comments-container">
@@ -38,7 +38,7 @@
          </section>
 
          <section id="comment-form">
-            <form method="POST" action="/thegong/comments/process_create" role="form">
+            <form method="POST" action="http://<?php echo $_SERVER['SERVER_NAME'];?>/comments/process_create" role="form">
               <div class="form-group">
                 <input type="text" name="name" placeholder="Your Name" class="form-control"/>
               </div>
@@ -65,7 +65,7 @@
             $count = 0; 
             while($count < 4 && $count < count($recent)) { $post = $recent[$count]; ?>
               <section class='col-md-3 news-item'>
-                <a href="/thegong/news/view/<?php echo $post->getId();?>"><img src="<?php echo $post->getImageUrl();?>" class="img-responsive" width="300" height="300"/></a>
+                <a href="http://<?php echo $_SERVER['SERVER_NAME'];?>/news/view/<?php echo $post->getId();?>"><img src="<?php echo $post->getImageUrl();?>" class="img-responsive" width="300" height="300"/></a>
                 <p><?php echo $post->getTitle();?></p>
                 </a>
               </section>
@@ -75,7 +75,7 @@
          <section class="row">
            <?php while($count < 8 && $count < count($recent)) { $post = $recent[$count]; ?>
             <section class='col-md-3 news-item'>
-              <a href="/thegong/news/view/<?php echo $post->getId();?>"><img src="<?php echo $post->getImageUrl();?>" class="img-responsive" width="300" height="300"/></a>
+              <a href="http://<?php echo $_SERVER['SERVER_NAME'];?>/news/view/<?php echo $post->getId();?>"><img src="<?php echo $post->getImageUrl();?>" class="img-responsive" width="300" height="300"/></a>
               <p><?php echo $post->getTitle();?></p>
               </a>
             </section>
@@ -88,7 +88,7 @@
            <section class="row">
               <?php foreach ($older as $post) { ?>
                   <section class='col-md-3 news-item'>
-                <a href="/thegong/news/view/<?php echo $post->getId();?>"><img src="<?php echo $post->getImageUrl();?>" class="img-responsive" width="300" height="300"/></a>
+                <a href="http://<?php echo $_SERVER['SERVER_NAME'];?>/news/view/<?php echo $post->getId();?>"><img src="<?php echo $post->getImageUrl();?>" class="img-responsive" width="300" height="300"/></a>
                 <p><?php echo $post->getTitle();?></p>
                 </a>
               </section>

@@ -11,7 +11,7 @@ class CommentsController extends Controller
     */
 
     /**
-     * Create a new authentication controller instance.
+     * Create a new comments controller instance.
      *
      * @return void
      */

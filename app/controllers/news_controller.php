@@ -54,6 +54,10 @@ class NewsController extends Controller
 		if(isset($data[0]) && is_numeric($data[0])){
 			$id = $data[0];
 		}
+		else{
+			$this->makeView('errors/system_errors');
+			return;
+		}
 
 		$news = News::find($id);
 
@@ -66,7 +70,6 @@ class NewsController extends Controller
 		$older = array_slice($published, 8);
 
 		$this->makeView('news/view',compact('recent','news','older'));
-
 	}
 
     /**
@@ -253,7 +256,10 @@ class NewsController extends Controller
 		if(isset($params[0]) && is_numeric($params[0])){
 			$id = $params[0];
 		}
-		// else we go to a custom error page , to be implemented later
+		else{
+			$this->makeView('errors/system_errors');
+			return;
+		}
 
 		$data = $this->getFormMessages();
 
